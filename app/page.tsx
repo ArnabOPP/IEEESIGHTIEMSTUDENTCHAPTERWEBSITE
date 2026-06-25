@@ -14,7 +14,7 @@ import { CinematicFooter } from "@/components/ui/cinematic-footer"
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-background text-foreground [overflow-x:clip] pb-20 md:pb-0">
+    <div className="relative min-h-screen bg-background text-foreground [overflow-x:clip]">
       {/* Global Header & Navigation Links */}
       <NavBarDemo />
 
