@@ -207,7 +207,7 @@ function LinkedInCard() {
 
 export default function SocialSection() {
   return (
-    <section id="social" className="relative bg-black px-6 md:px-12 py-12 pb-[80vh]">
+    <section id="social" className="relative bg-black px-4 md:px-12 py-8 md:py-12 pb-[60vh] md:pb-[80vh]">
       <ScrollStack
         itemDistance={120}
         itemScale={0.04}
@@ -218,13 +218,13 @@ export default function SocialSection() {
         rotationAmount={0}
         blurAmount={1}
       >
-        <ScrollStackItem itemClassName="h-[70vh]">
+        <ScrollStackItem itemClassName="h-[80vh] md:h-[70vh]">
           <JoinUsCard />
         </ScrollStackItem>
-        <ScrollStackItem itemClassName="h-[70vh]">
+        <ScrollStackItem itemClassName="h-[80vh] md:h-[70vh]">
           <InstagramCard />
         </ScrollStackItem>
-        <ScrollStackItem itemClassName="h-[70vh]">
+        <ScrollStackItem itemClassName="h-[80vh] md:h-[70vh]">
           <LinkedInCard />
         </ScrollStackItem>
       </ScrollStack>

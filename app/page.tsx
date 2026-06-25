@@ -14,12 +14,12 @@ import { CinematicFooter } from "@/components/ui/cinematic-footer"
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-background text-foreground [overflow-x:clip]">
+    <div className="relative min-h-screen bg-background text-foreground [overflow-x:clip] pb-20 md:pb-0">
       {/* Global Header & Navigation Links */}
       <NavBarDemo />
 
       {/* Hero Section */}
-      <section id="home" className="relative w-full h-screen flex items-center px-8 md:px-16 lg:px-24 z-10">
+      <section id="home" className="relative w-full min-h-screen flex items-center px-5 md:px-16 lg:px-24 z-10">
         
         {/* Background Video Layer */}
         <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
@@ -35,10 +35,10 @@ export default function Home() {
         </div>
 
         {/* Responsive Grid System splitting Content and 3D Canvas */}
-        <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-16">
+        <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-center mt-20 pb-8">
           
           {/* LEFT COLUMN */}
-          <div className="lg:col-span-7 flex flex-col gap-7 text-white">
+          <div className="lg:col-span-7 flex flex-col gap-5 text-white">
 
             {/* Eyebrow pill */}
             <div className="animate-fade-up animation-delay-100">
@@ -49,7 +49,7 @@ export default function Home() {
             </div>
 
             {/* Logo + Brand identity */}
-            <div className="animate-fade-up animation-delay-200 flex items-center gap-6">
+            <div className="animate-fade-up animation-delay-200 flex items-center gap-4 md:gap-6">
               <div className="relative flex-shrink-0">
                 <div className="absolute inset-0 bg-blue-400/25 blur-2xl rounded-full scale-110" />
                 <Image
@@ -57,12 +57,12 @@ export default function Home() {
                   alt="IEM SIGHT Emblem"
                   width={210}
                   height={210}
-                  className="relative object-contain invert brightness-200 drop-shadow-[0_0_24px_rgba(96,165,250,0.5)]"
+                  className="relative object-contain invert brightness-200 drop-shadow-[0_0_24px_rgba(96,165,250,0.5)] w-[120px] md:w-[160px] lg:w-[210px] h-auto"
                 />
               </div>
-              <div className="flex flex-col border-l border-white/15 pl-6">
-                <span className="text-[11px] uppercase tracking-[0.3em] text-white/50 font-medium mb-1">IEM Student Branch Chapter</span>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
+              <div className="flex flex-col border-l border-white/15 pl-4 md:pl-6">
+                <span className="text-[9px] md:text-[11px] uppercase tracking-[0.3em] text-white/50 font-medium mb-1">IEM Student Branch Chapter</span>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tight">
                   IEEE<br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-white to-blue-200">SIGHT</span>
                 </h1>
@@ -116,7 +116,7 @@ export default function Home() {
           </div>
 
           {/* RIGHT COLUMN: 3D STL Object Canvas Wrapper (Occupies 5 columns) */}
-          <div className="lg:col-span-5 w-full flex items-center justify-center">
+          <div className="hidden lg:flex lg:col-span-5 w-full items-center justify-center">
             <div className="w-full max-w-md bg-transparent">
               <IeeeLogo3D />
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import dynamic from "next/dynamic";
 
@@ -185,7 +185,7 @@ const colsMap: Record<number, string> = {
   1: "grid-cols-1",
   2: "grid-cols-1 sm:grid-cols-2",
   3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
-  4: "grid-cols-2 lg:grid-cols-4",
+  4: "grid-cols-2 sm:grid-cols-2 lg:grid-cols-4",
 };
 
 function DomainGroup({ domain }: { domain: Domain }) {
@@ -227,11 +227,18 @@ function DomainGroup({ domain }: { domain: Domain }) {
 export default function TeamSection() {
   const headerRef = useRef<HTMLDivElement>(null);
   const headerInView = useInView(headerRef, { once: true, margin: "-60px" });
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
     <section
       id="team"
-      className="relative bg-black py-28 overflow-hidden rounded-t-[2.5rem] -mt-10 z-10"
+      className="relative bg-black py-16 md:py-28 overflow-hidden rounded-t-[2.5rem] -mt-10 z-10"
       style={{
         backgroundImage: "radial-gradient(circle, #ffffff18 1.5px, transparent 1.5px)",
         backgroundSize: "24px 24px",
@@ -265,11 +272,11 @@ export default function TeamSection() {
           >
             <ParticleText
               text="Meet The Team"
-              fontSize={90}
+              fontSize={isMobile ? 44 : 90}
               particleColor="#ffffff"
               mouseRadius={130}
-              height={160}
-              particleGap={4}
+              height={isMobile ? 80 : 160}
+              particleGap={isMobile ? 3 : 4}
             />
           </motion.div>
 
