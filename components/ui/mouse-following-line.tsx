@@ -24,7 +24,7 @@ export function GridAnimation({
   const wrapperRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [ballRef, animate] = useAnimate()
-  const animationFrameRef = useRef<number>()
+  const animationFrameRef = useRef<number | null>(null)
   const isMouseOverRef = useRef(false)
   const currentBallPosition = useRef({ x: 0, y: 0 })
   const dimsRef = useRef({ width: 0, height: 0 })
