@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 
 const ScrollStack = dynamic(() => import("@/components/ui/ScrollStack"), { ssr: false });
@@ -206,25 +207,33 @@ function LinkedInCard() {
 // ── Social Section ─────────────────────────────────────────────────────────────
 
 export default function SocialSection() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <section id="social" className="relative bg-black px-4 md:px-12 py-8 md:py-12 pb-[60vh] md:pb-[80vh]">
       <ScrollStack
-        itemDistance={120}
+        itemDistance={isMobile ? 80 : 120}
         itemScale={0.04}
-        itemStackDistance={25}
-        stackPosition="25%"
-        scaleEndPosition="12%"
+        itemStackDistance={isMobile ? 15 : 25}
+        stackPosition={isMobile ? "15%" : "25%"}
+        scaleEndPosition={isMobile ? "8%" : "12%"}
         baseScale={0.88}
         rotationAmount={0}
         blurAmount={1}
       >
-        <ScrollStackItem itemClassName="h-[80vh] md:h-[70vh]">
+        <ScrollStackItem itemClassName="h-[75vh] md:h-[70vh]">
           <JoinUsCard />
         </ScrollStackItem>
-        <ScrollStackItem itemClassName="h-[80vh] md:h-[70vh]">
+        <ScrollStackItem itemClassName="h-[75vh] md:h-[70vh]">
           <InstagramCard />
         </ScrollStackItem>
-        <ScrollStackItem itemClassName="h-[80vh] md:h-[70vh]">
+        <ScrollStackItem itemClassName="h-[75vh] md:h-[70vh]">
           <LinkedInCard />
         </ScrollStackItem>
       </ScrollStack>

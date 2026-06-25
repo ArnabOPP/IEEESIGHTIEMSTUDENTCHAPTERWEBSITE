@@ -58,7 +58,7 @@ const TEXT_PANELS = [
 
 export default function SphereGallerySection() {
   return (
-    <div className="relative bg-white" style={{ overflow: "clip" }}>
+    <div className="relative bg-white hidden md:block" style={{ overflow: "clip" }}>
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="sticky top-0 h-screen w-full opacity-[0.25]" style={{ pointerEvents: 'auto' }}>
           <GridAnimation spacing={28} strokeLength={8} strokeWidth={1.8} lineColor="#000000" />
