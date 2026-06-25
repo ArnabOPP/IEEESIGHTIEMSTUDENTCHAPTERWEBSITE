@@ -1,15 +1,18 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import Image from "next/image";
-import Globe from "@/components/ui/globe";
+import dynamic from "next/dynamic";
 import { AvatarGroup } from "@/components/ui/avatar-group";
 import { Users, Command, Plus } from "lucide-react";
+
+const Globe = dynamic(() => import("@/components/ui/globe"), { ssr: false });
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -81,8 +84,11 @@ const STARS = Array.from({ length: 80 }, (_, i) => {
   return { x, y, size, opacity }
 })
 
-const GlobalNetworkCard = () => (
-  <div className="relative border border-dashed border-white/40 min-h-[520px] flex flex-col overflow-hidden bg-black">
+const GlobalNetworkCard = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: '200px 0px 200px 0px' });
+  return (
+  <div ref={ref} className="relative border border-dashed border-white/40 min-h-[520px] flex flex-col overflow-hidden bg-black">
     <CornerPlus />
 
     {/* Starry background */}
@@ -103,12 +109,11 @@ const GlobalNetworkCard = () => (
       ))}
     </div>
 
-    {/* Globe — centered, bleeds out at bottom */}
+    {/* Globe — only rendered when card is in view */}
     <div className="flex justify-center items-center pt-8 flex-1">
       <div className="relative">
-        {/* Glow ring behind globe */}
         <div className="absolute inset-0 rounded-full bg-blue-500/20 blur-3xl scale-110" />
-        <Globe />
+        {isInView && <Globe />}
       </div>
     </div>
 
@@ -130,7 +135,8 @@ const GlobalNetworkCard = () => (
       </div>
     </div>
   </div>
-);
+  );
+};
 
 const MEMBER_AVATARS = [
   { src: "https://i.pravatar.cc/150?img=11", label: "Arjun Sharma" },

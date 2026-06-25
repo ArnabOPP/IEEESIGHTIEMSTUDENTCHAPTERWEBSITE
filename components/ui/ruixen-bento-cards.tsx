@@ -1,8 +1,9 @@
 "use client"
 
-import React from "react"
+import React, { useRef } from "react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
+import { useInView } from "framer-motion"
 import dynamic from "next/dynamic"
 const Antigravity = dynamic(() => import("@/components/ui/antigravity"), { ssr: false })
 
@@ -118,8 +119,12 @@ const PlusIcon = ({ className }: { className?: string }) => (
 )
 
 export default function IemSightBentoCards() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { margin: '200px 0px 200px 0px' });
+
   return (
     <section
+      ref={sectionRef}
       className="relative bg-white dark:bg-black border border-gray-200 dark:border-gray-800 overflow-hidden"
       style={{
         backgroundImage: 'radial-gradient(circle, #00000055 1.5px, transparent 1.5px)',
@@ -127,7 +132,7 @@ export default function IemSightBentoCards() {
       }}
     >
       <div className="absolute inset-0 z-0">
-        <Antigravity
+        {isInView && <Antigravity
           count={150}
           magnetRadius={6}
           ringRadius={7}
@@ -138,7 +143,7 @@ export default function IemSightBentoCards() {
           color="#000000"
           autoAnimate={true}
           particleVariance={1}
-        />
+        />}
       </div>
       <div className="relative z-10 mx-auto container border border-gray-200 dark:border-gray-800 py-12 border-t-0 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 auto-rows-auto gap-4">

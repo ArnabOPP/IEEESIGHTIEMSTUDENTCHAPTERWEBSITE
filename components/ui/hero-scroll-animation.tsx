@@ -1,7 +1,7 @@
 'use client';
 
-import { useScroll, useTransform, motion, MotionValue, useSpring } from 'framer-motion';
-import React, { useRef, forwardRef } from 'react';
+import { useScroll, useTransform, motion, MotionValue, useSpring, useInView } from 'framer-motion';
+import React, { useRef, forwardRef, useState, useEffect } from 'react';
 import TrailGrid from '@/components/ui/trail-grid';
 
 interface SectionProps {
@@ -146,14 +146,22 @@ const Section1: React.FC<SectionProps> = ({ scrollYProgress }) => {
 const Section2: React.FC<SectionProps> = ({ scrollYProgress }) => {
   const scale  = useTransform(scrollYProgress, [0, 0.2], [0.8, 1]);
   const rotate = useTransform(scrollYProgress, [0, 0.2], [5, 0]);
+
+  // Only mount the heavy parallax content once it enters the viewport — never unmount after
+  const triggerRef = useRef(null);
+  const isInView = useInView(triggerRef, { once: true, margin: '0px 0px -10% 0px' });
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { if (isInView) setMounted(true); }, [isInView]);
+
   return (
     <motion.section
       style={{ scale, rotate }}
       className="relative bg-gradient-to-t to-[#050a12] from-[#020408] text-white overflow-hidden"
     >
+      <div ref={triggerRef} className="absolute inset-0 pointer-events-none" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       <div className="relative z-10">
-        <HeroParallaxLayout products={INITIATIVE_PRODUCTS} />
+        {mounted && <HeroParallaxLayout products={INITIATIVE_PRODUCTS} />}
       </div>
     </motion.section>
   );
