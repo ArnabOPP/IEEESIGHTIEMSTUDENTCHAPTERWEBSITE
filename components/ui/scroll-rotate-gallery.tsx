@@ -214,7 +214,7 @@ export function ScrollRotateGallery({
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  transition={{ duration: 0.6, ease: "easeInOut" as const }}
                 >
                   <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight leading-tight mb-3 text-foreground">
                     {titleText}
