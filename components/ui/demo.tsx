@@ -22,7 +22,7 @@ export function NavBarDemo() {
     { name: 'Conferences', url: '#conferences', icon: Users },
     { name: 'Benefits', url: '#benefits', icon: Award },
     { name: 'Gallery', url: '#gallery', icon: ImageIcon },
-    { name: 'Teams', url: '#teams', icon: HeartHandshake },
+    { name: 'Teams', url: '#team', icon: HeartHandshake },
     { name: 'Social', url: '#social', icon: Share2 }
   ]
 
