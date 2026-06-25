@@ -38,7 +38,7 @@ const ProductCard = ({ product, translate }: { product: HeroParallaxCard; transl
   <motion.div
     style={{ x: translate }}
     whileHover={{ y: -20 }}
-    className="group/product h-96 w-[30rem] relative flex-shrink-0"
+    className="group/product h-48 w-[16rem] md:h-96 md:w-[30rem] relative flex-shrink-0"
   >
     <div className="block group-hover/product:shadow-2xl h-full w-full rounded-2xl overflow-hidden cursor-pointer border border-white/10 absolute inset-0">
       <img
@@ -80,7 +80,7 @@ const HeroParallaxLayout = ({ products }: { products: HeroParallaxCard[] }) => {
   return (
     <div
       ref={ref}
-      className="h-[340vh] pt-40 pb-40 relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-auto md:h-[340vh] pt-20 md:pt-40 pb-10 md:pb-40 relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       {/* Header */}
       <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
@@ -127,7 +127,7 @@ const Section1: React.FC<SectionProps> = ({ scrollYProgress }) => {
           <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
           IEEE SIGHT IEM · Initiatives
         </span>
-        <h1 className="text-6xl md:text-8xl font-black text-center tracking-tight leading-[115%] max-w-5xl">
+        <h1 className="text-4xl md:text-8xl font-black text-center tracking-tight leading-[115%] max-w-5xl">
           Engineering Solutions <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-white to-blue-200">
             for Real-World Impact
@@ -176,7 +176,7 @@ const InitiativesScrollSection = forwardRef<HTMLElement>((props, ref) => {
   });
 
   return (
-    <main ref={container} className="relative h-[440vh] bg-white">
+    <main ref={container} className="relative h-auto md:h-[440vh] bg-white">
       <Section1 scrollYProgress={scrollYProgress} />
       <Section2 scrollYProgress={scrollYProgress} />
     </main>

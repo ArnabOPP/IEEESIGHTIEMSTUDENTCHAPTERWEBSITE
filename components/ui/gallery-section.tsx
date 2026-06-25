@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ZoomParallax } from '@/components/ui/zoom-parallax';
 import dynamic from 'next/dynamic';
 const ParticleText = dynamic(() => import('@/components/ui/particle-text-canvas'), { ssr: false });
@@ -20,6 +20,14 @@ const GALLERY_IMAGES = [
 ];
 
 export default function GallerySection() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   return (
     <section id="gallery" className="relative bg-white" style={{ overflow: 'clip' }}>
       {/* Full-section grid background — sticky so it stays in viewport while scrolling */}
@@ -38,11 +46,11 @@ export default function GallerySection() {
         <div className="relative z-10 w-full">
         <ParticleText
           text="Our Gallery"
-          fontSize={110}
+          fontSize={isMobile ? 48 : 110}
           particleColor="#111111"
           mouseRadius={130}
-          height={180}
-          particleGap={4}
+          height={isMobile ? 90 : 180}
+          particleGap={isMobile ? 3 : 4}
         />
         </div>
         <p className="relative z-10 text-gray-500 text-lg max-w-xl text-center leading-relaxed -mt-2 px-6">

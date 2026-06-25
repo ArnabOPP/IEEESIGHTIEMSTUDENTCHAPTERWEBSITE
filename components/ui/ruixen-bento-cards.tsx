@@ -131,7 +131,7 @@ export default function IemSightBentoCards() {
         backgroundSize: '24px 24px',
       }}
     >
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 hidden md:block">
         {isInView && <Antigravity
           count={150}
           magnetRadius={6}
