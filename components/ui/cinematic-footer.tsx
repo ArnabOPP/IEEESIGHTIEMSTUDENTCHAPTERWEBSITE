@@ -110,19 +110,18 @@ const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>(
       return () => ctx.revert();
     }, []);
 
-    const Comp = Component as React.ElementType<any>;
-    return (
-      <Comp
-        ref={(node: HTMLElement) => {
+    return React.createElement(
+      Component as any,
+      {
+        ref: (node: HTMLElement) => {
           (localRef as any).current = node;
           if (typeof forwardedRef === "function") forwardedRef(node);
           else if (forwardedRef) (forwardedRef as any).current = node;
-        }}
-        className={cn("cursor-pointer", className)}
-        {...props}
-      >
-        <>{children}</>
-      </Comp>
+        },
+        className: cn("cursor-pointer", className),
+        ...props,
+      },
+      children
     );
   }
 );
