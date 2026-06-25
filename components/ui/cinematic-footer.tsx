@@ -121,7 +121,7 @@ const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>(
         className={cn("cursor-pointer", className)}
         {...props}
       >
-        {children}
+        <>{children}</>
       </Comp>
     );
   }
