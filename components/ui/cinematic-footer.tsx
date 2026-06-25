@@ -110,8 +110,9 @@ const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>(
       return () => ctx.revert();
     }, []);
 
+    const Comp = Component as React.ElementType<any>;
     return (
-      <Component
+      <Comp
         ref={(node: HTMLElement) => {
           (localRef as any).current = node;
           if (typeof forwardedRef === "function") forwardedRef(node);
@@ -121,7 +122,7 @@ const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>(
         {...props}
       >
         {children}
-      </Component>
+      </Comp>
     );
   }
 );
