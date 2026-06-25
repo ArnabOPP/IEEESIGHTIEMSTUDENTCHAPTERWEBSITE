@@ -31,6 +31,47 @@ export function NavBar({ items, className }: NavBarProps) {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
+  useEffect(() => {
+    const sectionIds = items
+      .map((item) => item.url.replace('#', ''))
+      .filter(Boolean)
+
+    const observers: IntersectionObserver[] = []
+    const visibilityMap: Record<string, number> = {}
+
+    const pickActive = () => {
+      // Find the section with the highest intersection ratio currently visible
+      let best = ''
+      let bestRatio = 0
+      for (const id of sectionIds) {
+        const r = visibilityMap[id] ?? 0
+        if (r > bestRatio) { bestRatio = r; best = id }
+      }
+      if (best) {
+        const matched = items.find((i) => i.url === `#${best}`)
+        if (matched) setActiveTab(matched.name)
+      }
+    }
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            visibilityMap[id] = entry.intersectionRatio
+          })
+          pickActive()
+        },
+        { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1.0] }
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach((o) => o.disconnect())
+  }, [items])
+
   return (
     <div
       className={cn(

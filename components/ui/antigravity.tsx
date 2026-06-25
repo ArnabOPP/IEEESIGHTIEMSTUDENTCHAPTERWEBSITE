@@ -49,6 +49,8 @@ const AntigravityInner = ({
   const rawMouse = useRef({ x: 0, y: 0 });
 
   const { gl } = useThree();
+  const glRef = useRef(gl);
+  glRef.current = gl;
 
   useMemo(() => {
     if (typeof window === 'undefined') return;
@@ -85,9 +87,10 @@ const AntigravityInner = ({
 
     const { viewport: v } = state;
 
-    // Convert window pixel coords to R3F world coords
-    const nx = (rawMouse.current.x / window.innerWidth)  * 2 - 1;
-    const ny = -((rawMouse.current.y / window.innerHeight) * 2 - 1);
+    // Convert window pixel coords to R3F world coords using canvas rect
+    const rect = glRef.current.domElement.getBoundingClientRect();
+    const nx = ((rawMouse.current.x - rect.left) / rect.width)  * 2 - 1;
+    const ny = -(((rawMouse.current.y - rect.top)  / rect.height) * 2 - 1);
 
     const mouseDist = Math.sqrt(Math.pow(nx - lastMousePos.current.x, 2) + Math.pow(ny - lastMousePos.current.y, 2));
     if (mouseDist > 0.001) {

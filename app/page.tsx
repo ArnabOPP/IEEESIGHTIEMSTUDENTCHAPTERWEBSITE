@@ -4,10 +4,17 @@ import { IeeeLogo3D } from "@/components/ui/ieee-logo-3d"
 import IemSightBentoCards from "@/components/ui/ruixen-bento-cards"
 import IemSightFeaturesBento from "@/components/ui/bento-product-features"
 import InitiativesScrollSection from "@/components/ui/hero-scroll-animation"
+import ConferencesBentoCards from "@/components/ui/conferences-bento"
+import BenefitsSection from "@/components/ui/benefits-section"
+import GallerySection from "@/components/ui/gallery-section"
+import SphereGallerySection from "@/components/ui/sphere-gallery-section"
+import TeamSection from "@/components/ui/team-section"
+import SocialSection from "@/components/ui/social-section"
+import { CinematicFooter } from "@/components/ui/cinematic-footer"
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="relative min-h-screen bg-background text-foreground [overflow-x:clip]">
       {/* Global Header & Navigation Links */}
       <NavBarDemo />
 
@@ -129,6 +136,27 @@ export default function Home() {
       <div id="initiatives">
         <InitiativesScrollSection />
       </div>
+
+      {/* Conferences Section */}
+      <ConferencesBentoCards />
+
+      {/* Benefits Section */}
+      <BenefitsSection />
+
+      {/* Gallery Section */}
+      <GallerySection />
+
+      {/* Sphere Gallery Section */}
+      <SphereGallerySection />
+
+      {/* Team Section */}
+      <TeamSection />
+
+      {/* Social Section */}
+      <SocialSection />
+
+      {/* Footer */}
+      <CinematicFooter />
 
     </div>
   )
