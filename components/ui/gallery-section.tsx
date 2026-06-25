@@ -29,7 +29,7 @@ export default function GallerySection() {
   }, []);
 
   return (
-    <section id="gallery" className="relative bg-white" style={{ overflow: 'clip' }}>
+    <section id="gallery" className="relative bg-white pb-10 md:pb-0" style={{ overflow: 'clip' }}>
       {/* Full-section grid background — sticky so it stays in viewport while scrolling */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="sticky top-0 h-screen w-full opacity-[0.25]" style={{ pointerEvents: 'auto' }}>
